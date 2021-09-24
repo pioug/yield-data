@@ -1,0 +1,15 @@
+{
+  "name": "yields",
+  "version": "1.0.0",
+  "private": true,
+  "author": "Gilles Piou <gilles.piou@gmail.com> (https://www.github.com/pioug)",
+  "license": "MIT",
+  "dependencies": {
+    "cheerio": "1.0.0-rc.10",
+    "puppeteer": "10.4.0"
+  },
+  "devDependencies": {
+    "eslint": "7.32.0",
+    "prettier": "2.4.1"
+  }
+}
