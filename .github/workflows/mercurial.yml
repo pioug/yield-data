@@ -1,0 +1,36 @@
+name: mercurial
+
+on:
+  push:
+    paths:
+      - 'mercurial.js'
+  schedule:
+    - cron: '* * * * *'
+
+jobs:
+  mercurial:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+      - uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ hashFiles('**/package-lock.json') }}
+
+      - run: npm ci
+      - run: node mercurial.js
+      - run: |
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions"
+          git add mercurial.json -f
+          git commit -m "Update mercurial.json"
+          git checkout gh-pages
+          git checkout main mercurial.json
+          git add mercurial.json -f
+          git commit --amend -m "Update data"
+          git push --force
