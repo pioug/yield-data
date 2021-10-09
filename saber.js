@@ -27,6 +27,7 @@ const puppeteer = require("puppeteer");
     .filter(function (i, el) {
       return $(el).text().trim() === "Active Farms";
     })
+    .parent()
     .next()
     .children()
     .map(function (i, el) {
