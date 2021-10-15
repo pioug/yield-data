@@ -1,0 +1,36 @@
+name: atrix
+
+on:
+  push:
+    paths:
+      - 'atrix.js'
+  schedule:
+    - cron: '* * * * *'
+
+jobs:
+  atrix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+      - uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ hashFiles('**/package-lock.json') }}
+
+      - run: npm ci
+      - run: node atrix.js
+      - run: |
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions"
+          git add atrix.json -f
+          git commit -m "Update atrix.json"
+          git checkout gh-pages
+          git checkout main atrix.json
+          git add atrix.json -f
+          git commit --amend -m "Update data"
+          git push --force
