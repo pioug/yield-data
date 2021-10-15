@@ -1,14 +1,14 @@
-name: solfarm
+name: tulip
 
 on:
   push:
     paths:
-      - 'solfarm.js'
+      - 'tulip.js'
   schedule:
     - cron: '* * * * *'
 
 jobs:
-  solfarm:
+  tulip:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -23,14 +23,14 @@ jobs:
           key: ${{ hashFiles('**/package-lock.json') }}
 
       - run: npm ci
-      - run: node solfarm.js
+      - run: node tulip.js
       - run: |
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global user.name "github-actions"
-          git add solfarm.json -f
-          git commit -m "Update solfarm.json"
+          git add tulip.json -f
+          git commit -m "Update tulip.json"
           git checkout gh-pages
-          git checkout main solfarm.json
-          git add solfarm.json -f
+          git checkout main tulip.json
+          git add tulip.json -f
           git commit --amend -m "Update data"
           git push --force

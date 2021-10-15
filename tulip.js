@@ -6,7 +6,7 @@ const puppeteer = require("puppeteer");
   const timestamp = new Date();
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
-  await page.goto("https://solfarm.io/vaults", {
+  await page.goto("https://tulip.garden/vaults", {
     waitUntil: "networkidle2",
   });
   await page.waitForFunction(() => {
@@ -37,9 +37,9 @@ const puppeteer = require("puppeteer");
 
   const results = {
     data,
-    name: "SolFarm",
+    name: "Tulip",
     timetamp: timestamp.toISOString(),
-    url: "https://solfarm.io/vaults",
+    url: "https://tulip.garden/vaults",
   };
-  fs.writeFileSync("solfarm.json", JSON.stringify(results, null, 2) + "\n");
+  fs.writeFileSync("tulip.json", JSON.stringify(results, null, 2) + "\n");
 })();

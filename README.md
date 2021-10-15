@@ -2,5 +2,5 @@
 - https://pioug.github.io/yield-data/orca.json
 - https://pioug.github.io/yield-data/raydium.json
 - https://pioug.github.io/yield-data/saber.json
-- https://pioug.github.io/yield-data/solfarm.json
 - https://pioug.github.io/yield-data/sunny.json
+- https://pioug.github.io/yield-data/tulip.json
