@@ -3,9 +3,9 @@ name: tulip
 on:
   push:
     paths:
-      - 'tulip.js'
+      - "tulip.js"
   schedule:
-    - cron: '* * * * *'
+    - cron: "* * * * *"
 
 jobs:
   tulip:
@@ -16,7 +16,7 @@ jobs:
           fetch-depth: 0
       - uses: actions/setup-node@v2
         with:
-          node-version: '16'
+          node-version: "16"
       - uses: actions/cache@v2
         with:
           path: ~/.npm

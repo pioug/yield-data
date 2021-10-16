@@ -34,7 +34,7 @@ const puppeteer = require("puppeteer");
             .find(".text-sm.font-medium.text-gray-300")
             .first()
             .text()
-            .match(/[\d,]+%/)?.[0] ??  "",
+            .match(/[\d,]+%/)?.[0] ?? "",
       };
     })
     .toArray();
