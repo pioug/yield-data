@@ -1,11 +1,13 @@
 const fs = require("fs");
 const cheerio = require("cheerio");
 const puppeteer = require("puppeteer");
+const userAgent = require("user-agents");
 
 (async () => {
   const timestamp = new Date();
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
+  await page.setUserAgent(userAgent.toString());
   await page.goto("https://tulip.garden/vaults", {
     waitUntil: "networkidle2",
   });
