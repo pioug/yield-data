@@ -13,7 +13,8 @@ const puppeteer = require("puppeteer");
     for (const div of document.querySelectorAll("p")) {
       if (
         div.textContent.includes("APY") &&
-        (div.nextSibling?.textContent ?? "").includes("%")
+        (div.nextSibling?.textContent ?? "").includes("%") &&
+        !(div.nextSibling?.textContent ?? "").includes("0.00%")
       ) {
         return true;
       }
