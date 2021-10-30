@@ -4,9 +4,13 @@ const puppeteer = require("puppeteer");
 
 (async () => {
   const timestamp = new Date();
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({
+    args: ["--proxy-server=85.195.104.71:80"],
+    ignoreHTTPSErrors: true,
+  });
   const page = await browser.newPage();
   await page.goto("https://dex.aldrin.com/pools", {
+    timeout: 600000,
     waitUntil: "networkidle2",
   });
   await page.waitForFunction(() => {
