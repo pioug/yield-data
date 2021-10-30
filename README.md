@@ -1,3 +1,4 @@
+- https://pioug.github.io/yield-data/aldrin.json
 - https://pioug.github.io/yield-data/atrix.json
 - https://pioug.github.io/yield-data/mercurial.json
 - https://pioug.github.io/yield-data/orca.json
