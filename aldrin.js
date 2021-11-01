@@ -9,15 +9,12 @@ const puppeteer = require("puppeteer");
     ignoreHTTPSErrors: true,
   });
   const page = await browser.newPage();
-  await page.goto("https://dex.aldrin.com/pools", {
-    timeout: 600000,
-    waitUntil: "networkidle2",
-  });
+  await page.goto("https://dex.aldrin.com/pools");
   await page.waitForFunction(() => {
     for (const element of document.querySelectorAll(
       "[class*='Addressbook__Text']"
     )) {
-      if (element.textContent.includes("%")) {
+      if (/[\d.]+%$/.test(element.textContent)) {
         return true;
       }
     }
