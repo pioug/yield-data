@@ -9,16 +9,19 @@ const puppeteer = require("puppeteer");
     ignoreHTTPSErrors: true,
   });
   const page = await browser.newPage();
-  await page.goto("https://dex.aldrin.com/pools");
-  await page.waitForFunction(() => {
-    for (const element of document.querySelectorAll(
-      "[class*='Addressbook__Text']"
-    )) {
-      if (/[\d.]+%$/.test(element.textContent)) {
-        return true;
+  await page.goto("https://dex.aldrin.com/pools", { timeout: 300000 });
+  await page.waitForFunction(
+    () => {
+      for (const element of document.querySelectorAll(
+        "[class*='Addressbook__Text']"
+      )) {
+        if (/[\d.]+%$/.test(element.textContent)) {
+          return true;
+        }
       }
-    }
-  });
+    },
+    { timeout: 300000 }
+  );
   const content = await page.content();
   await browser.close();
 
