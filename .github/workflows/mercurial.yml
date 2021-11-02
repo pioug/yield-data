@@ -29,6 +29,7 @@ jobs:
           git config --global user.name "github-actions"
           git add mercurial.json -f
           git commit -m "Update mercurial.json"
+          git fetch --all
           git checkout gh-pages
           git checkout main mercurial.json
           git add mercurial.json -f

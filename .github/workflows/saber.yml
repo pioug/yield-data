@@ -29,6 +29,7 @@ jobs:
           git config --global user.name "github-actions"
           git add saber.json -f
           git commit -m "Update saber.json"
+          git fetch --all
           git checkout gh-pages
           git checkout main saber.json
           git add saber.json -f

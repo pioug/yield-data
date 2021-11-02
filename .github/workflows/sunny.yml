@@ -29,6 +29,7 @@ jobs:
           git config --global user.name "github-actions"
           git add sunny.json -f
           git commit -m "Update sunny.json"
+          git fetch --all
           git checkout gh-pages
           git checkout main sunny.json
           git add sunny.json -f

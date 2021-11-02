@@ -29,6 +29,7 @@ jobs:
           git config --global user.name "github-actions"
           git add raydium.json -f
           git commit -m "Update raydium.json"
+          git fetch --all
           git checkout gh-pages
           git checkout main raydium.json
           git add raydium.json -f

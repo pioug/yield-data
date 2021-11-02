@@ -29,6 +29,7 @@ jobs:
           git config --global user.name "github-actions"
           git add atrix.json -f
           git commit -m "Update atrix.json"
+          git fetch --all
           git checkout gh-pages
           git checkout main atrix.json
           git add atrix.json -f

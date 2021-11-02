@@ -29,6 +29,7 @@ jobs:
           git config --global user.name "github-actions"
           git add tulip.json -f
           git commit -m "Update tulip.json"
+          git fetch --all
           git checkout gh-pages
           git checkout main tulip.json
           git add tulip.json -f
