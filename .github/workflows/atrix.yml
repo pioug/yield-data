@@ -23,7 +23,7 @@ jobs:
           key: ${{ hashFiles('**/package-lock.json') }}
 
       - run: npm ci
-      - run: node atrix.js
+      - run: node atrix.js || node atrix.js
       - run: |
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global user.name "github-actions"
