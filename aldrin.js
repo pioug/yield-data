@@ -9,6 +9,12 @@ const puppeteer = require("puppeteer");
     ignoreHTTPSErrors: true,
   });
   const page = await browser.newPage();
+  await page.setRequestInterception(true);
+  page.on("request", (request) => {
+    if (["image", "stylesheet", "font"].includes(request.resourceType()))
+      request.abort();
+    else request.continue();
+  });
   await page.goto("https://dex.aldrin.com/pools", { timeout: 300000 });
   await page.waitForFunction(
     () => {
