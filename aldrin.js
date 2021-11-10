@@ -5,7 +5,7 @@ const puppeteer = require("puppeteer");
 (async () => {
   const timestamp = new Date();
   const browser = await puppeteer.launch({
-    args: ["--proxy-server=85.195.104.71:80"],
+    args: process.argv.slice(2),
     ignoreHTTPSErrors: true,
   });
   const page = await browser.newPage();
