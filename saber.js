@@ -29,10 +29,20 @@ const puppeteer = require("puppeteer");
     })
     .parent()
     .next()
+    .next()
     .children()
     .map(function (i, el) {
+      const name = $(el)
+        .children()
+        .first()
+        .children()
+        .first()
+        .children()
+        .first()
+        .children();
+      name.find("a").remove();
       return {
-        name: $(el).find("span").text(),
+        name: `${name.first().text()}-${name.last().text()}`,
         apy: $(el)
           .find("div")
           .filter(function (i, el) {
