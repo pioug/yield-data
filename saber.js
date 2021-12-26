@@ -6,9 +6,31 @@ const puppeteer = require("puppeteer");
   const timestamp = new Date();
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
-  await page.goto("https://app.saber.so/#/farms", {
-    waitUntil: "networkidle2",
-  });
+  const categories = ["usd", "sol", "btc", "other"];
+  const map = new Map();
+  for (const category of categories) {
+    const data = await getPools(browser, page, category);
+    data.forEach(({ apy, name }) => {
+      map.set(name, apy);
+    });
+  }
+
+  await browser.close();
+  const data = Array.from(map, ([name, apy]) => ({ name, apy }));
+
+  console.log(data);
+
+  const results = {
+    data,
+    name: "Saber",
+    timetamp: timestamp.toISOString(),
+    url: "https://app.saber.so/#/farms",
+  };
+  fs.writeFileSync("saber.json", JSON.stringify(results, null, 2) + "\n");
+})();
+
+async function getPools(browser, page, category) {
+  await page.goto(`https://app.saber.so/#/farms/${category}`);
   await page.waitForFunction(() => {
     for (const div of document.querySelectorAll("div")) {
       if (
@@ -20,7 +42,6 @@ const puppeteer = require("puppeteer");
     }
   });
   const content = await page.content();
-  await browser.close();
 
   const $ = cheerio.load(content);
   const data = $("h1")
@@ -54,13 +75,5 @@ const puppeteer = require("puppeteer");
     })
     .toArray();
 
-  console.log(data);
-
-  const results = {
-    data,
-    name: "Saber",
-    timetamp: timestamp.toISOString(),
-    url: "https://app.saber.so/#/farms",
-  };
-  fs.writeFileSync("saber.json", JSON.stringify(results, null, 2) + "\n");
-})();
+    return data;
+}
