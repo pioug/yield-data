@@ -10,7 +10,6 @@ on:
 jobs:
   aldrin:
     runs-on: ubuntu-latest
-    if: false
     steps:
       - uses: actions/checkout@v2
         with:
@@ -24,7 +23,7 @@ jobs:
           key: ${{ hashFiles('**/package-lock.json') }}
 
       - run: npm ci
-      - run: node aldrin.js --proxy-server=85.195.104.71:80 || node aldrin.js --proxy-server=181.36.121.222:999
+      - run: node aldrin.js
       - run: |
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global user.name "github-actions"
