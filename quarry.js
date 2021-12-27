@@ -71,30 +71,47 @@ async function getQuarries(browser, page, rewarder) {
       timeout: 30000,
     }
   );
-  const content = await page.content();
 
-  const $ = cheerio.load(content);
-  const data = $("h1")
-    .filter(function (i, el) {
-      return $(el).text().trim().includes("Rewards");
-    })
-    .parent()
-    .next()
-    .children()
-    .map(function (i, el) {
-      return {
-        name: $(el).find('[size="28"] + div span:nth-child(2)').text().trim(),
-        apy: $(el)
-          .find("span")
-          .filter(function (i, el) {
-            return $(el).text().trim() === "Rewards APY";
-          })
-          .parent()
-          .next()
-          .text(),
-      };
-    })
-    .toArray();
+  let cont = true;
+  let scrolled = 0;
+  let all = [];
 
-  return data;
+  while (cont) {
+    const content = await page.content();
+    const $ = cheerio.load(content);
+    const data = $('[size="28"]')
+      .filter(function (i) {
+        return i;
+      })
+      .parent()
+      .parent()
+      .parent()
+      .map(function (i, el) {
+        return {
+          name: $(el).find('[size="28"] + div span:nth-child(2)').text().trim(),
+          apy: $(el)
+            .find("span")
+            .filter(function (i, el) {
+              return $(el).text().trim() === "Rewards APY";
+            })
+            .parent()
+            .next()
+            .text(),
+        };
+      })
+      .toArray();
+
+    const innerHeight = await page.evaluate(async function () {
+      return window.innerHeight;
+    });
+    cont = await page.evaluate(async function (arg) {
+      window.scrollBy(0, window.innerHeight);
+      return arg + window.innerHeight <= document.body.scrollHeight;
+    }, scrolled);
+
+    scrolled += innerHeight;
+    all = all.concat(data);
+  }
+
+  return all;
 }
