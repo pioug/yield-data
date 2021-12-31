@@ -43,5 +43,5 @@ const userAgent = require("user-agents");
     timetamp: timestamp.toISOString(),
     url: "https://tulip.garden/vaults",
   };
-  fs.writeFileSync("tulip.json", JSON.stringify(results, null, 2) + "\n");
+  fs.writeFileSync("tulip.json", JSON.stringify(results) + "\n");
 })();

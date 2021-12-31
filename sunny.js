@@ -53,5 +53,5 @@ const puppeteer = require("puppeteer");
     timetamp: timestamp.toISOString(),
     url: "https://app.sunny.ag/",
   };
-  fs.writeFileSync("sunny.json", JSON.stringify(results, null, 2) + "\n");
+  fs.writeFileSync("sunny.json", JSON.stringify(results) + "\n");
 })();

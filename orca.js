@@ -47,7 +47,7 @@ const puppeteer = require("puppeteer");
     timetamp: timestamp.toISOString(),
     url: "https://www.orca.so/pools",
   };
-  fs.writeFileSync("orca.json", JSON.stringify(results, null, 2) + "\n");
+  fs.writeFileSync("orca.json", JSON.stringify(results) + "\n");
 })();
 
 async function scrollPage(page) {

@@ -53,5 +53,5 @@ const puppeteer = require("puppeteer");
     timetamp: timestamp.toISOString(),
     url: "https://mercurial.finance/",
   };
-  fs.writeFileSync("mercurial.json", JSON.stringify(results, null, 2) + "\n");
+  fs.writeFileSync("mercurial.json", JSON.stringify(results) + "\n");
 })();

@@ -44,7 +44,7 @@ const puppeteer = require("puppeteer");
     timetamp: timestamp.toISOString(),
     url: "https://dex.aldrin.com/pools",
   };
-  fs.writeFileSync("aldrin.json", JSON.stringify(results, null, 2) + "\n");
+  fs.writeFileSync("aldrin.json", JSON.stringify(results) + "\n");
 })();
 
 async function getPools(page, tab) {

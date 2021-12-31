@@ -36,7 +36,7 @@ const userAgent = require("user-agents");
     timetamp: timestamp.toISOString(),
     url: "https://app.quarry.so/#/rewarders",
   };
-  fs.writeFileSync("quarry.json", JSON.stringify(results, null, 2) + "\n");
+  fs.writeFileSync("quarry.json", JSON.stringify(results) + "\n");
 })();
 
 async function getQuarries(browser, page, rewarder) {

@@ -47,5 +47,5 @@ const puppeteer = require("puppeteer");
     timetamp: timestamp.toISOString(),
     url: "https://app.atrix.finance/#/farms",
   };
-  fs.writeFileSync("atrix.json", JSON.stringify(results, null, 2) + "\n");
+  fs.writeFileSync("atrix.json", JSON.stringify(results) + "\n");
 })();

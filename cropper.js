@@ -42,5 +42,5 @@ const puppeteer = require("puppeteer");
     timetamp: timestamp.toISOString(),
     url: "https://cropper.finance/farms",
   };
-  fs.writeFileSync("cropper.json", JSON.stringify(results, null, 2) + "\n");
+  fs.writeFileSync("cropper.json", JSON.stringify(results) + "\n");
 })();

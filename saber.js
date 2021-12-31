@@ -26,7 +26,7 @@ const puppeteer = require("puppeteer");
     timetamp: timestamp.toISOString(),
     url: "https://app.saber.so/#/farms",
   };
-  fs.writeFileSync("saber.json", JSON.stringify(results, null, 2) + "\n");
+  fs.writeFileSync("saber.json", JSON.stringify(results) + "\n");
 })();
 
 async function getPools(browser, page, category) {

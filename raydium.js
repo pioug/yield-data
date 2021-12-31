@@ -68,5 +68,5 @@ const userAgent = require("user-agents");
     timetamp: timestamp.toISOString(),
     url: "https://raydium.io/farms/",
   };
-  fs.writeFileSync("raydium.json", JSON.stringify(results, null, 2) + "\n");
+  fs.writeFileSync("raydium.json", JSON.stringify(results) + "\n");
 })();
