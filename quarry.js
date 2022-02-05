@@ -12,18 +12,20 @@ const userAgent = require("user-agents");
     "rXhAofQCT7NN9TUqigyEAUzV1uLL4boeD8CRkNBSkYk",
     "J829VB5Fi7DMoMLK7bsVGFM82cRU61BKtiPz9PNFdL7b",
     "5LAZ5rUe1CLJoKYauyVXdbG6e7nBmY2j5mJ8PnesCA8z",
-    "3UqiNcE1S2MoQ1M1PvrQf3gCkM7KB1nWfZdoQckobHpz",
     "3ahWtCwoyv4HHYdDtSzSPzD8DDo6jJKqEmPJrdztFnw4",
     "9eNj2Y4YdqM9Unw8qTm8kzx1Xt64Rft8a6HjvpkPL7QJ",
-    "CduAhHmZe3n5KkxhP4EjqTZjWTuptYnfXvi4ULyF7fVc",
-    "GuHrjvzqDvLTB27ebd9iFKwceCxKvSswzTByDQUTsvdm",
+    "CXer5v3osVQFDWUB3SJUPB1PN1dB3dQSQfymyAnmCryp",
   ];
   const map = new Map();
   for (const rewarder of rewarders) {
-    const data = await getQuarries(browser, page, rewarder);
-    data.forEach(({ apy, name }) => {
-      map.set(name, apy);
-    });
+    try {
+      const data = await getQuarries(browser, page, rewarder);
+      data.forEach(({ apy, name }) => {
+        map.set(name, apy);
+      });
+    } catch (err) {
+      console.error(err);
+    }
   }
   await browser.close();
   const data = Array.from(map, ([name, apy]) => ({ name, apy }));
@@ -68,7 +70,7 @@ async function getQuarries(browser, page, rewarder) {
     },
     {
       polling: "mutation",
-      timeout: 30000,
+      timeout: 10000,
     }
   );
 
