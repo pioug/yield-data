@@ -6,6 +6,7 @@ const puppeteer = require("puppeteer");
   const timestamp = new Date();
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
+  await page.setViewport({ width: 1280, height: 800 })
   await page.goto("https://solend.fi/dashboard", {
     waitUntil: "networkidle2",
   });
@@ -31,7 +32,7 @@ const puppeteer = require("puppeteer");
     .map(function (i, el) {
       return {
         name: $(el).find("td:first-child span").text().trim(),
-        apy: $(el).find("td:nth-child(3) span").first().text().trim(),
+        apy: $(el).find("td:nth-child(4) span").first().text().trim(),
       };
     })
     .toArray();
