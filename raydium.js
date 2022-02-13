@@ -26,7 +26,7 @@ const userAgent = require("user-agents");
     },
     {
       polling: "mutation",
-      timeout: 30000,
+      timeout: 60000,
     }
   );
   const content = await page.content();
