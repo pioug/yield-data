@@ -8,7 +8,7 @@ const userAgent = require("user-agents");
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
   await page.setUserAgent(userAgent.toString());
-  await page.goto("https://raydium.io/farms/", {
+  await page.goto("https://v1.raydium.io/farms/", {
     waitUntil: "load",
   });
   await page.waitForFunction(
