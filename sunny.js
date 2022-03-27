@@ -6,7 +6,7 @@ const puppeteer = require("puppeteer");
   const timestamp = new Date();
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
-  await page.goto("https://app.sunny.ag/", {
+  await page.goto("https://app.sunny.ag/pools", {
     waitUntil: "networkidle2",
   });
   await page.waitForFunction(() => {
@@ -23,14 +23,13 @@ const puppeteer = require("puppeteer");
   await browser.close();
 
   const $ = cheerio.load(content);
-  const data = $("p")
+  const data = $("div")
     .filter(function (i, el) {
-      return $(el).text().trim() === "Your Rewards";
+      return $(el).text().trim() === "Total Value Locked";
     })
     .parent()
     .parent()
-    .next()
-    .children()
+    .parent()
     .map(function (i, el) {
       return {
         name: $(el).find("img").parent().next().text(),
