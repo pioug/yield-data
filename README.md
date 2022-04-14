@@ -4,6 +4,7 @@
 | https://pioug.github.io/yield-data/atrix.json       | [![atrix](https://github.com/pioug/yield-data/actions/workflows/atrix.yml/badge.svg)](https://github.com/pioug/yield-data/actions/workflows/atrix.yml)             |
 | https://pioug.github.io/yield-data/crema.json       | [![crema](https://github.com/pioug/yield-data/actions/workflows/crema.yml/badge.svg)](https://github.com/pioug/yield-data/actions/workflows/crema.yml)             |
 | https://pioug.github.io/yield-data/cropper.json     | [![cropper](https://github.com/pioug/yield-data/actions/workflows/cropper.yml/badge.svg)](https://github.com/pioug/yield-data/actions/workflows/cropper.yml)       |
+| https://pioug.github.io/yield-data/lifinity.json    | [![mercurial](https://github.com/pioug/yield-data/actions/workflows/lifinity.yml/badge.svg)](https://github.com/pioug/yield-data/actions/workflows/lifinity.yml)   |
 | https://pioug.github.io/yield-data/francium.json    | [![mercurial](https://github.com/pioug/yield-data/actions/workflows/francium.yml/badge.svg)](https://github.com/pioug/yield-data/actions/workflows/francium.yml)   |
 | https://pioug.github.io/yield-data/mercurial.json   | [![mercurial](https://github.com/pioug/yield-data/actions/workflows/mercurial.yml/badge.svg)](https://github.com/pioug/yield-data/actions/workflows/mercurial.yml) |
 | https://pioug.github.io/yield-data/orca.json        | [![orca](https://github.com/pioug/yield-data/actions/workflows/orca.yml/badge.svg)](https://github.com/pioug/yield-data/actions/workflows/orca.yml)                |
