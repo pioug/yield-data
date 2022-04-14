@@ -1,0 +1,37 @@
+name: crema
+
+on:
+  push:
+    paths:
+      - "crema.js"
+  schedule:
+    - cron: "* * * * *"
+
+jobs:
+  crema:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "17"
+      - uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ hashFiles('**/package-lock.json') }}
+
+      - run: npm ci
+      - run: node crema.js || node crema.js
+      - run: |
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions"
+          git add crema.json -f
+          git commit -m "Update crema.json"
+          git fetch --all
+          git checkout gh-pages
+          git checkout main crema.json
+          git add crema.json -f
+          git commit --amend -m "Update data"
+          git push --force
