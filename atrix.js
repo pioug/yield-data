@@ -10,34 +10,60 @@ const puppeteer = require("puppeteer");
     waitUntil: "networkidle2",
   });
   await page.waitForFunction(() => {
-    for (const div of document.querySelectorAll("div")) {
-      if (div.textContent.includes("% APY")) {
+    for (const div of document.querySelectorAll(
+      ".self-center.font-mono.font-medium"
+    )) {
+      if (div.textContent.includes("%")) {
         return true;
       }
     }
   });
-  const content = await page.content();
-  await browser.close();
 
-  const $ = cheerio.load(content);
-  const data = $("p")
-    .filter(function (i, el) {
-      return $(el).text().trim() === "Farms";
-    })
-    .parent()
-    .nextAll()
-    .map(function (i, el) {
-      return {
-        name: $(el).find(".text-xl.font-medium.text-white").first().text(),
-        apy:
-          $(el)
-            .find(".text-sm.font-medium.text-gray-300")
-            .first()
-            .text()
-            .match(/[\d,]+%/)?.[0] ?? "",
-      };
-    })
-    .toArray();
+  let cont = true;
+  let data = [];
+
+  while (cont) {
+    const content = await page.content();
+
+    const $ = cheerio.load(content);
+    const list = $("p")
+      .filter(function (i, el) {
+        return $(el).text().trim() === "Farm";
+      })
+      .parent()
+      .parent()
+      .nextAll("a")
+      .map(function (i, el) {
+        return {
+          name: $(el).find(".self-center.text-base").first().text(),
+          apy:
+            $(el)
+              .find(
+                ".col-span-1.flex.flex-row.font-normal.flex.flex-row.align-center.justify-end"
+              )
+              .first()
+              .text()
+              .match(/[\d,]+%/)?.[0] ?? "",
+        };
+      })
+      .toArray();
+
+    cont = await page.evaluate(async function () {
+      const next = document.body.querySelector(
+        ".text-center.self-center.justify-self-center.mx-5.w-24"
+      ).nextElementSibling;
+      if (next.disabled) {
+        return false;
+      } else {
+        next.click();
+        return true;
+      }
+    });
+
+    data = data.concat(list);
+  }
+
+  await browser.close();
 
   console.log(data);
 
