@@ -22,8 +22,10 @@ const puppeteer = require("puppeteer");
   const $ = cheerio.load(content);
   const data = $(".ant-table-row")
     .map(function (i, el) {
+      const name = $(el).find("td span div:nth-child(2)");
       return {
-        name: $(el).find("td a").first().contents()[0].data.trim(),
+        name:
+          name.contents().length > 1 ? name.contents()[0].data.trim() : name.text().trim(),
         apr:
           $(el)
             .find("td:nth-child(7)")
