@@ -22,10 +22,9 @@ const puppeteer = require("puppeteer");
   const $ = cheerio.load(content);
   const data = $(".ant-table-row")
     .map(function (i, el) {
-      const name = $(el).find("td span div:nth-child(2)");
+      const name = $(el).find(".pool-title");
       return {
-        name:
-          name.contents().length > 1 ? name.contents()[0].data.trim() : name.text().trim(),
+        name: name.text().trim(),
         apr:
           $(el)
             .find("td:nth-child(7)")
@@ -33,7 +32,10 @@ const puppeteer = require("puppeteer");
             .match(/[\d.]+%/)?.[0] ?? "",
       };
     })
-    .toArray();
+    .toArray()
+    .filter(function ({ name }) {
+      return !name.includes("CPMM") && !name.includes("CLMM");
+    });
 
   console.log(data);
 
