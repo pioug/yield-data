@@ -6,17 +6,11 @@ const puppeteer = require("puppeteer");
   const timestamp = new Date();
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
-  await page.setRequestInterception(true);
-  page.on("request", (request) => {
-    if (["image", "stylesheet", "font"].includes(request.resourceType()))
-      request.abort();
-    else request.continue();
-  });
   await page.goto("https://dex.aldrin.com/pools", { timeout: 300000 });
   await page.waitForFunction(
     () => {
-      for (const td of document.querySelectorAll("td:nth-child(6)")) {
-        if (td.textContent.includes("%")) {
+      for (const div of document.querySelectorAll("div:nth-child(6)")) {
+        if (div.textContent.includes("%")) {
           return true;
         }
       }
@@ -60,11 +54,11 @@ async function getPools(page, tab) {
   const content = await page.content();
 
   const $ = cheerio.load(content);
-  const data = $("tbody tr")
+  const data = $("[aria-rowindex]")
     .map(function (i, el) {
       return {
-        name: $(el).find("td:first-child").first().text(),
-        apr: $(el).find("td:nth-child(6)").first().text() ?? "",
+        name: $(el).find("div:first-child").first().text(),
+        apr: $(el).find("div:nth-child(6)").first().text() ?? "",
       };
     })
     .toArray();
