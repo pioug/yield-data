@@ -1,14 +1,14 @@
-name: mercurial
+name: meteora
 
 on:
   push:
     paths:
-      - "mercurial.js"
+      - "meteora.js"
   schedule:
     - cron: "* * * * *"
 
 jobs:
-  mercurial:
+  meteora:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -20,15 +20,15 @@ jobs:
           key: ${{ hashFiles('**/package-lock.json') }}
 
       - run: npm ci
-      - run: node mercurial.js
+      - run: node meteora.js
       - run: |
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global user.name "github-actions"
-          git add mercurial.json -f
-          git commit -m "Update mercurial.json"
+          git add meteora.json -f
+          git commit -m "Update meteora.json"
           git fetch --all
           git checkout gh-pages
-          git checkout main mercurial.json
-          git add mercurial.json -f
+          git checkout main meteora.json
+          git add meteora.json -f
           git commit --amend -m "Update data"
           git push --force
