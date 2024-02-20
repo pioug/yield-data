@@ -12,4 +12,5 @@
 | https://pioug.github.io/yield-data/portfinance.json   | [![tulip](https://github.com/pioug/yield-data/actions/workflows/portfinance.yml/badge.svg)](https://github.com/pioug/yield-data/actions/workflows/portfinance.yml)             |
 | https://pioug.github.io/yield-data/raydium.json       | [![raydium](https://github.com/pioug/yield-data/actions/workflows/raydium.yml/badge.svg)](https://github.com/pioug/yield-data/actions/workflows/raydium.yml)                   |
 | https://pioug.github.io/yield-data/solend.json        | [![tulip](https://github.com/pioug/yield-data/actions/workflows/solend.yml/badge.svg)](https://github.com/pioug/yield-data/actions/workflows/solend.yml)                       |
+| https://pioug.github.io/yield-data/solend-usdc.json   | [![solend-usdc](https://github.com/pioug/yield-data/actions/workflows/solend-usdc.yml/badge.svg)](https://github.com/pioug/yield-data/actions/workflows/solend-usdc.yml)       |
 | https://pioug.github.io/yield-data/tulip.json         | [![tulip](https://github.com/pioug/yield-data/actions/workflows/tulip.yml/badge.svg)](https://github.com/pioug/yield-data/actions/workflows/tulip.yml)                         |
