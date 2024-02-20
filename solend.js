@@ -6,7 +6,7 @@ const puppeteer = require("puppeteer");
   const timestamp = new Date();
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
-  await page.setViewport({ width: 1280, height: 800 })
+  await page.setViewport({ width: 1280, height: 800 });
   await page.goto("https://solend.fi/dashboard", {
     waitUntil: "networkidle2",
   });
