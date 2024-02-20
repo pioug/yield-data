@@ -9,9 +9,8 @@ const puppeteer = require("puppeteer");
   await page.goto("https://solend.fi/dashboard");
 
   // Find USDC row
-  await page.waitForXPath('//table// *[contains(text(), "USDC")]');
-  const [trElement] = await page.$x(
-    '//table// *[contains(text(), "USDC")]/ancestor::tr'
+  const trElement = await page.waitForSelector(
+    'xpath///table// *[contains(text(), "USDC")]/ancestor::tr'
   );
   const [, , tvl, rate] = await page.evaluate((el) => {
     const tdElements = el.querySelectorAll("td");

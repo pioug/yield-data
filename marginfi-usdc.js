@@ -12,18 +12,15 @@ const puppeteer = require("puppeteer");
   await page.waitForSelector(".tabler-icon.tabler-icon-x");
   const parentElement = await page
     .$(".tabler-icon.tabler-icon-x")
-    .then((el) => el.$x(".."));
-  await parentElement[0].click();
+    .then((el) => el.getProperty('parentNode'));
+  await parentElement.click();
 
   // Switch to Pro view
-  await page.waitForXPath('//*[contains(text(), "Select token")]');
+  await page.waitForSelector('xpath///*[contains(text(), "Select token")]');
   await page.click(".MuiSwitch-input");
 
   // Find USDC row
-  await page.waitForXPath('//*[contains(text(), "USDC")]');
-  const [trElement] = await page.$x(
-    '//*[contains(text(), "USDC")]/ancestor::tr'
-  );
+  const trElement = await page.waitForSelector('xpath///table// *[contains(text(), "USDC")]/ancestor::tr');
   const [, , rate, , tvl] = await page.evaluate((el) => {
     const tdElements = el.querySelectorAll("td");
     return Array.from(tdElements).map((el) => el.textContent.trim());
