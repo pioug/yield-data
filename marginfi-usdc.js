@@ -37,7 +37,7 @@ const puppeteer = require("puppeteer");
     protocol: "marginfi",
     name: "USDC",
     rate: parseFloat(rate),
-    tlv: parseFloat(tvl) * 1000000,
+    tvl: parseFloat(tvl) * 1000000,
   };
   fs.writeFileSync("marginfi-usdc.json", JSON.stringify(results) + "\n");
 })();
