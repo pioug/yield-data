@@ -1,13 +1,11 @@
 {
-  "name": "yields",
+  "name": "yield-data",
   "version": "1.0.0",
   "private": true,
   "author": "Gilles Piou <gilles.piou@gmail.com> (https://www.github.com/pioug)",
   "license": "MIT",
   "dependencies": {
-    "cheerio": "^1.0.0-rc.10",
-    "puppeteer": "^22.1.0",
-    "user-agents": "^1.1.121"
+    "puppeteer": "^22.1.0"
   },
   "devDependencies": {
     "eslint": "^8.56.0",
