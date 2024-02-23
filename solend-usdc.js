@@ -10,7 +10,7 @@ const puppeteer = require("puppeteer");
 
   // Find USDC row
   const trElement = await page.waitForSelector(
-    'xpath///table// *[contains(text(), "USDC")]/ancestor::tr'
+    'xpath///table// *[contains(text(), "USDC")]/ancestor::tr',
   );
   const [, , tvl, rate] = await page.evaluate((el) => {
     const tdElements = el.querySelectorAll("td");

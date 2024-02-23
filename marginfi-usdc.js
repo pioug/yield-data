@@ -12,7 +12,7 @@ const puppeteer = require("puppeteer");
   await page.waitForSelector(".tabler-icon.tabler-icon-x");
   const parentElement = await page
     .$(".tabler-icon.tabler-icon-x")
-    .then((el) => el.getProperty('parentNode'));
+    .then((el) => el.getProperty("parentNode"));
   await parentElement.click();
 
   // Switch to Pro view
@@ -20,7 +20,9 @@ const puppeteer = require("puppeteer");
   await page.click(".MuiSwitch-input");
 
   // Find USDC row
-  const trElement = await page.waitForSelector('xpath///table// *[contains(text(), "USDC")]/ancestor::tr');
+  const trElement = await page.waitForSelector(
+    'xpath///table// *[contains(text(), "USDC")]/ancestor::tr',
+  );
   const [, , rate, , tvl] = await page.evaluate((el) => {
     const tdElements = el.querySelectorAll("td");
     return Array.from(tdElements).map((el) => el.textContent.trim());
