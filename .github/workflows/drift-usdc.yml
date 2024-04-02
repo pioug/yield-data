@@ -1,0 +1,34 @@
+name: drift-usdc
+
+on:
+  push:
+    paths:
+      - "drift-usdc.js"
+  schedule:
+    - cron: "* * * * *"
+
+jobs:
+  drift-usdc:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ hashFiles('**/package-lock.json') }}
+
+      - run: npm ci
+      - run: node drift-usdc.js
+      - run: |
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions"
+          git add drift-usdc.json -f
+          git commit -m "Update drift-usdc.json"
+          git fetch --all
+          git checkout gh-pages
+          git checkout main drift-usdc.json
+          git add drift-usdc.json -f
+          git commit --amend -m "Update data"
+          git push --force
