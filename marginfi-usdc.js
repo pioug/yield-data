@@ -15,10 +15,6 @@ const puppeteer = require("puppeteer");
     .then((el) => el.getProperty("parentNode"));
   await parentElement.click();
 
-  // Switch to Pro view
-  await page.waitForSelector('xpath///*[contains(text(), "Select token")]');
-  await page.click(".MuiSwitch-input");
-
   // Find USDC row
   const trElement = await page.waitForSelector(
     'xpath///table// *[contains(text(), "USDC")]/ancestor::tr',
