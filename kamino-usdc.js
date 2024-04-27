@@ -6,7 +6,9 @@ const puppeteer = require("puppeteer");
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
   await page.setViewport({ width: 1920, height: 1080 });
-  await page.goto("https://app.kamino.finance/");
+  await page.goto("https://app.kamino.finance/", {
+    waitUntil: "networkidle0",
+  });
 
   const markets = [
     ["kamino-usdc-jlp", "USDC (JLP)"],
