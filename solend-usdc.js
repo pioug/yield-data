@@ -25,7 +25,7 @@ const puppeteer = require("puppeteer");
     protocol: "solend",
     name: "USDC",
     rate: parseFloat(rate.split(" ").at(-1)),
-    tvl: parseFloat(tvl.replaceAll(",", "")),
+    tvl: parseFloat(tvl.replaceAll(",", "")) * 1000000,
   };
   fs.writeFileSync("solend-usdc.json", JSON.stringify(results) + "\n");
 })();
