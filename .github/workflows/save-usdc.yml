@@ -1,14 +1,14 @@
-name: solend-usdc
+name: save-usdc
 
 on:
   push:
     paths:
-      - "solend-usdc.js"
+      - "save-usdc.js"
   schedule:
     - cron: "* * * * *"
 
 jobs:
-  solend-usdc:
+  save-usdc:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -20,15 +20,15 @@ jobs:
           key: ${{ hashFiles('**/package-lock.json') }}
 
       - run: npm ci
-      - run: node solend-usdc.js
+      - run: node save-usdc.js
       - run: |
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global user.name "github-actions"
-          git add solend-usdc.json -f
-          git commit -m "Update solend-usdc.json"
+          git add save-usdc.json -f
+          git commit -m "Update save-usdc.json"
           git fetch --all
           git checkout gh-pages
-          git checkout main solend-usdc.json
-          git add solend-usdc.json -f
+          git checkout main save-usdc.json
+          git add save-usdc.json -f
           git commit --amend -m "Update data"
           git push --force
