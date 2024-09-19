@@ -12,7 +12,7 @@ const puppeteer = require("puppeteer");
     'xpath///img[@src="/assets/icons/markets/usdc.svg"]/ancestor::div[1]/parent::*',
   );
 
-  const [, tvl, rate] = await page.evaluate((el) => {
+  const [, , tvl, rate] = await page.evaluate((el) => {
     return Array.from(el.children).map((el) => el.textContent.trim());
   }, usdcRow);
 
