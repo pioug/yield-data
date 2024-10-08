@@ -9,7 +9,7 @@ const puppeteer = require("puppeteer");
   await page.goto("https://suilend.fi/dashboard");
 
   const trElement = await page.waitForSelector(
-    `xpath/(//table// *[text() = "wUSDC"]/ancestor::tr)`,
+    `xpath/(//table// *[text() = "USDC"]/ancestor::tr)`,
   );
   const [, tvl, , , rate] = await page.evaluate((el) => {
     const tdElements = el.querySelectorAll("td");
