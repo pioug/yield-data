@@ -1,0 +1,34 @@
+name: scallop-usdc
+
+on:
+  push:
+    paths:
+      - "scallop-usdc.js"
+  schedule:
+    - cron: "* * * * *"
+
+jobs:
+  scallop-usdc:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ hashFiles('**/package-lock.json') }}
+
+      - run: npm ci
+      - run: node scallop-usdc.js
+      - run: |
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions"
+          git add scallop-usdc.json -f
+          git commit -m "Update scallop-usdc.json"
+          git fetch --all
+          git checkout gh-pages
+          git checkout main scallop-usdc.json
+          git add scallop-usdc.json -f
+          git commit --amend -m "Update data"
+          git push --force
