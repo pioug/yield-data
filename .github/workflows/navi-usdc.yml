@@ -1,0 +1,34 @@
+name: navi-usdc
+
+on:
+  push:
+    paths:
+      - "navi-usdc.js"
+  schedule:
+    - cron: "* * * * *"
+
+jobs:
+  navi-usdc:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ hashFiles('**/package-lock.json') }}
+
+      - run: npm ci
+      - run: node navi-usdc.js
+      - run: |
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions"
+          git add navi-usdc.json -f
+          git commit -m "Update navi-usdc.json"
+          git fetch --all
+          git checkout gh-pages
+          git checkout main navi-usdc.json
+          git add navi-usdc.json -f
+          git commit --amend -m "Update data"
+          git push --force
