@@ -25,10 +25,13 @@ jobs:
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global user.name "github-actions"
           git add drift-usdc.json -f
+          git add drift-usdc-jlp.json -f
           git commit -m "Update drift-usdc.json"
           git fetch --all
           git checkout gh-pages
           git checkout main drift-usdc.json
+          git checkout main drift-usdc-jlp.json
           git add drift-usdc.json -f
+          git add drift-usdc-jlp.json -f
           git commit --amend -m "Update data"
           git push --force
