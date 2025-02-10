@@ -6,7 +6,7 @@ const puppeteer = require("puppeteer");
   const browser = await puppeteer.launch({ args: ["--no-sandbox"] });
   const page = await browser.newPage();
   await page.setViewport({ width: 1920, height: 1080 });
-  await page.goto("https://save.finance/dashboard");
+  await page.goto("https://save.finance/");
 
   const rateElement = await page.waitForSelector(
     'xpath/(//*[contains(., "APR") and contains(., "USDC") and contains(., "Deposits")])[last()]//p[contains(., "Deposit APR")]/following-sibling::*[1]',
