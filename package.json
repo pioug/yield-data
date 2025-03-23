@@ -5,10 +5,10 @@
   "author": "Gilles Piou <gilles.piou@gmail.com> (https://www.github.com/pioug)",
   "license": "MIT",
   "dependencies": {
-    "puppeteer": "^22.1.0"
+    "puppeteer": "^24.4.0"
   },
   "devDependencies": {
-    "eslint": "^8.56.0",
-    "prettier": "^3.2.5"
+    "eslint": "^9.23.0",
+    "prettier": "^3.5.3"
   }
 }
