@@ -9,14 +9,14 @@ const puppeteer = require("puppeteer");
   await page.goto("https://app.drift.trade/earn/borrow-lend");
 
   const markets = [
-    ["drift-usdc", "USDC", "usdc.svg"],
-    ["drift-usdc-jlp", "USDC (JLP)", "usdc-1.svg"],
+    ["drift-usdc", "USDC", "usdc.svg", 1],
+    ["drift-usdc-jlp", "USDC (JLP)", "usdc.svg", 3],
   ];
 
   for (let i = 0; i < markets.length; i++) {
-    const [id, name, image] = markets[i];
+    const [id, name, image, index] = markets[i];
     const usdcRow = await page.waitForSelector(
-      `xpath/(//img[@src="https://drift-public.s3.eu-central-1.amazonaws.com/assets/icons/markets/${image}"]/ancestor::div[1]/parent::*)[1]`,
+      `xpath/(//img[@src="https://drift-public.s3.eu-central-1.amazonaws.com/assets/icons/markets/${image}"]/ancestor::div[1]/parent::*)[${index}]`,
     );
     const [, tvl, rate] = await page.evaluate((el) => {
       return Array.from(el.children).map((el) => el.textContent.trim());
