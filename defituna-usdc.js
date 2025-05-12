@@ -11,7 +11,7 @@ const puppeteer = require("puppeteer");
   const trElement = await page.waitForSelector(
     `xpath/(//tr[contains(., 'USDC')])`,
   );
-  const [, tvl, rate] = await page.evaluate((el) => {
+  const [, tvl, , ,rate] = await page.evaluate((el) => {
     const tdElements = el.querySelectorAll("td");
     return Array.from(tdElements).map((el) =>
       el.textContent.trim().match(/[\d,.]+/),
