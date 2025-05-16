@@ -9,8 +9,8 @@ const puppeteer = require("puppeteer");
   await page.goto("https://app.drift.trade/earn/borrow-lend");
 
   const markets = [
-    ["drift-usdc", "USDC", "usdc.svg", 1],
-    ["drift-usdc-jlp", "USDC (JLP)", "usdc.svg", 3],
+    ["drift-usdc", "USDC", "usdc.svg", 2],
+    ["drift-usdc-jlp", "USDC (JLP)", "usdc.svg", 1],
   ];
 
   for (let i = 0; i < markets.length; i++) {
