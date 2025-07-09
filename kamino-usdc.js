@@ -11,9 +11,7 @@ const puppeteer = require("puppeteer");
   });
 
   const markets = [
-    ["kamino-usdc-main", "USDC (Main)", 0],
-    ["kamino-usdc-jlp", "USDC (JLP)", 1],
-    ["kamino-usdc-alt", "USDC (Alt)", 3],
+    ["kamino-usdc-main", "USDC (Main)", 1],
   ];
 
   for (const market of markets) {
