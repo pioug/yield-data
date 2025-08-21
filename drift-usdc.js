@@ -18,7 +18,6 @@ const puppeteer = require("puppeteer");
     const usdcRow = await page.waitForSelector(
       `xpath/(//img[@src="https://drift-public.s3.eu-central-1.amazonaws.com/assets/icons/markets/${image}"]/ancestor::div[1]/parent::*)[${index}]`,
     );
-    console.log(`xpath/(//img[@src="https://drift-public.s3.eu-central-1.amazonaws.com/assets/icons/markets/${image}"]/ancestor::div[1]/parent::*)[${index}]`);
     const [, tvl, rate] = await page.evaluate((el) => {
       return Array.from(el.children).map((el) => el.textContent.trim());
     }, usdcRow);
@@ -30,6 +29,9 @@ const puppeteer = require("puppeteer");
       rate: parseFloat(rate),
       tvl: parseFloat(tvl) * 1_000_000,
     };
+
+    console.log(results);
+
     fs.writeFileSync(id + ".json", JSON.stringify(results) + "\n");
   }
 

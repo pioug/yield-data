@@ -32,6 +32,9 @@ const puppeteer = require("puppeteer");
       rate: parseFloat(rate),
       tvl: parseFloat(tvl.replace("$", "")) * 1000000,
     };
+
+    console.log(results);
+
     fs.writeFileSync(id + ".json", JSON.stringify(results) + "\n");
   }
 
