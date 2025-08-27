@@ -6,12 +6,12 @@ const puppeteer = require("puppeteer");
   const browser = await puppeteer.launch({ args: ["--no-sandbox"] });
   const page = await browser.newPage();
   await page.setViewport({ width: 1920, height: 1080 });
-  await page.goto("https://app.kamino.finance/lending", {
+  await page.goto("https://kamino.com/markets", {
     waitUntil: "networkidle0",
   });
 
   const markets = [
-    ["kamino-usdc-main", "USDC (Main)", 1],
+    ["kamino-usdc-main", "USDC (Main)", 0],
   ];
 
   for (const market of markets) {
