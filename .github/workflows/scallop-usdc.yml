@@ -19,7 +19,7 @@ jobs:
           path: ~/.npm
           key: ${{ hashFiles('**/package-lock.json') }}
 
-      - run: npm ci
+      - run: npm i
       - run: node scallop-usdc.js
       - run: |
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
