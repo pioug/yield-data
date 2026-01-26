@@ -9,7 +9,7 @@ const puppeteer = require("puppeteer");
   await page.goto("https://trade.bluefin.io/lend");
 
   const trElement = await page.waitForSelector(
-    `xpath/(//tr[.//img[contains(@src, 'usdc.png')]])`,
+    `xpath/(//tr[.//img[contains(@src, 'usdc-icon')]])`,
   );
   const [, , tvl, , , rate] = await page.evaluate((el) => {
     const tdElements = el.querySelectorAll("td");
