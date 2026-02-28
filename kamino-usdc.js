@@ -10,9 +10,7 @@ const puppeteer = require("puppeteer");
     waitUntil: "networkidle0",
   });
 
-  const markets = [
-    ["kamino-usdc-main", "USDC (Main)", 0],
-  ];
+  const markets = [["kamino-usdc-main", "USDC (Main)", 0]];
 
   for (const market of markets) {
     const [id, name, index] = market;

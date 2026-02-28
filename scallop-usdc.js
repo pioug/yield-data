@@ -13,9 +13,7 @@ const puppeteer = require("puppeteer");
   );
   const [, , tvl, , , rate] = await page.evaluate((el) => {
     const tdElements = el.querySelectorAll(":scope > div");
-    return Array.from(tdElements).map((el) =>
-      el.textContent.trim().match(/[\d,.]+/),
-    );
+    return Array.from(tdElements).map((el) => el.textContent.trim().match(/[\d,.]+/));
   }, trElement);
 
   await browser.close();

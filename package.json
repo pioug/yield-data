@@ -2,13 +2,13 @@
   "name": "yield-data",
   "version": "1.0.0",
   "private": true,
-  "author": "Gilles Piou <gilles.piou@gmail.com> (https://www.github.com/pioug)",
   "license": "MIT",
+  "author": "Gilles Piou <gilles.piou@gmail.com> (https://www.github.com/pioug)",
   "dependencies": {
     "puppeteer": "^24.4.0"
   },
   "devDependencies": {
-    "oxlint": "^1.50.0",
-    "prettier": "^3.5.3"
+    "oxfmt": "^0.35.0",
+    "oxlint": "^1.50.0"
   }
 }

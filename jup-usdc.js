@@ -8,14 +8,10 @@ const puppeteer = require("puppeteer");
   await page.setViewport({ width: 1920, height: 1080 });
   await page.goto("https://jup.ag/lend/earn");
 
-  const trElement = await page.waitForSelector(
-    `xpath/(//tr[contains(., 'USDC')])`,
-  );
-  const [, rate, , ,tvl] = await page.evaluate((el) => {
+  const trElement = await page.waitForSelector(`xpath/(//tr[contains(., 'USDC')])`);
+  const [, rate, , , tvl] = await page.evaluate((el) => {
     const tdElements = el.querySelectorAll("td");
-    return Array.from(tdElements).map((el) =>
-      el.textContent.trim().match(/[\d,.]+/),
-    );
+    return Array.from(tdElements).map((el) => el.textContent.trim().match(/[\d,.]+/));
   }, trElement);
 
   await browser.close();

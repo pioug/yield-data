@@ -8,9 +8,7 @@ const puppeteer = require("puppeteer");
   await page.setViewport({ width: 1920, height: 1080 });
   await page.goto("https://suilend.fi/dashboard");
 
-  const trElement = await page.waitForSelector(
-    `xpath/(//table// *[text() = "USDC"]/ancestor::tr)`,
-  );
+  const trElement = await page.waitForSelector(`xpath/(//table// *[text() = "USDC"]/ancestor::tr)`);
   const [, tvl, , , rate] = await page.evaluate((el) => {
     const tdElements = el.querySelectorAll("td");
     return Array.from(tdElements).map((el) => el.textContent.trim());

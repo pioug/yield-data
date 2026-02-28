@@ -8,15 +8,11 @@ const puppeteer = require("puppeteer");
   await page.setViewport({ width: 1920, height: 1080 });
   await page.goto("https://kai.finance/vaults", { waitUntil: "networkidle0" });
 
-  const trElement = await page.waitForSelector(
-    `xpath///a[contains(@href, '/vaults/USDC')]/div`,
-  );
+  const trElement = await page.waitForSelector(`xpath///a[contains(@href, '/vaults/USDC')]/div`);
 
   const [, tvl, rate] = await page.evaluate((el) => {
     const tdElements = el.querySelectorAll(":scope > div");
-    return Array.from(tdElements).map((el) =>
-      el.textContent.trim().match(/[\d,.]+/),
-    );
+    return Array.from(tdElements).map((el) => el.textContent.trim().match(/[\d,.]+/));
   }, trElement);
 
   await browser.close();

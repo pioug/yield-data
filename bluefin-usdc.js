@@ -10,14 +10,10 @@ const puppeteer = require("puppeteer");
     waitUntil: "networkidle2",
   });
 
-  const trElement = await page.waitForSelector(
-    `xpath/(//tr[td[2][normalize-space() = "USDC"]])`,
-  );
+  const trElement = await page.waitForSelector(`xpath/(//tr[td[2][normalize-space() = "USDC"]])`);
   const [, , tvl, , , rate] = await page.evaluate((el) => {
     const tdElements = el.querySelectorAll("td");
-    return Array.from(tdElements).map((el) =>
-      el.textContent.replace(/\s+/g, "").trim(),
-    );
+    return Array.from(tdElements).map((el) => el.textContent.replace(/\s+/g, "").trim());
   }, trElement);
 
   await browser.close();

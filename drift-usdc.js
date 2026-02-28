@@ -18,7 +18,7 @@ const puppeteer = require("puppeteer");
     const usdcRow = await page.waitForSelector(
       `xpath/(//img[@src="https://drift-public.s3.eu-central-1.amazonaws.com/assets/icons/markets/${image}"]/ancestor::div[1]/parent::*)[${index}]`,
     );
-    const [, rate, ,tvl] = await page.evaluate((el) => {
+    const [, rate, , tvl] = await page.evaluate((el) => {
       return Array.from(el.children).map((el) => el.textContent.trim());
     }, usdcRow);
     const results = {

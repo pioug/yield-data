@@ -1,1 +1,8 @@
-{"id":"kamino-usdc-alt","timestamp":"2025-07-09T17:30:26.002Z","protocol":"kamino","name":"USDC (Alt)","rate":5.34,"tvl":2820000}
+{
+  "id": "kamino-usdc-alt",
+  "timestamp": "2025-07-09T17:30:26.002Z",
+  "protocol": "kamino",
+  "name": "USDC (Alt)",
+  "rate": 5.34,
+  "tvl": 2820000
+}
