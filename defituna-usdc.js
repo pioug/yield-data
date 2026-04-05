@@ -9,9 +9,9 @@ const puppeteer = require("puppeteer");
   await page.goto("https://defituna.com/lending");
 
   const trElement = await page.waitForSelector(`xpath/(//tr[contains(., 'USDC')])`);
-  const [, tvl, , , rate] = await page.evaluate((el) => {
+  const [, tvlText, , , rate] = await page.evaluate((el) => {
     const tdElements = el.querySelectorAll("td");
-    return Array.from(tdElements).map((el) => el.textContent.trim().match(/[\d,.]+/));
+    return Array.from(tdElements).map((el) => el.textContent.trim());
   }, trElement);
 
   await browser.close();
@@ -22,7 +22,7 @@ const puppeteer = require("puppeteer");
     protocol: "defituna",
     name: "USDC",
     rate: parseFloat(rate),
-    tvl: parseFloat(tvl) * 1000000,
+    tvl: parseFloat(tvlText.replace(/\$/g, "").replace(/,/g, "").trim()),
   };
 
   console.log(results);
