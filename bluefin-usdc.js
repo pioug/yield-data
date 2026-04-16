@@ -7,16 +7,18 @@ const puppeteer = require("puppeteer");
   const page = await browser.newPage();
   await page.setViewport({ width: 1920, height: 1080 });
   await page.goto("https://trade.bluefin.io/lend", {
-    waitUntil: "networkidle2",
+    waitUntil: "domcontentloaded",
   });
 
-  const trElement = await page.waitForSelector(`xpath/(//tr[td[2][normalize-space() = "USDC"]])`);
-  const [, , tvl, , , rate] = await page.evaluate((el) => {
+  const trElement = await page.waitForSelector(`xpath/(//tr[td[normalize-space() = "USDC"]])`);
+  const [, supply, , , rate] = await page.evaluate((el) => {
     const tdElements = el.querySelectorAll("td");
     return Array.from(tdElements).map((el) => el.textContent.replace(/\s+/g, "").trim());
   }, trElement);
 
   await browser.close();
+
+  const [, tvl] = supply.match(/\$([\d,.]+)/) ?? [];
 
   const results = {
     id: "bluefin-usdc",
