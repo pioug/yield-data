@@ -11,7 +11,7 @@ const puppeteer = require("puppeteer");
   });
 
   const trElement = await page.waitForSelector(
-    'xpath/(//*[normalize-space() = "Main Market"]/following::table[1]//tr[td[1][normalize-space() = "USDC"] and td[2][normalize-space() != "$0.00"]])[1]',
+    'xpath/(//*[normalize-space() = "SOL/BTC Market"]/following::table[1]//tr[td[1]//*[normalize-space() = "USDC"]])[1]',
   );
   const [, tvl, , , rate] = await page.evaluate((el) => {
     const tdElements = el.querySelectorAll("td");
@@ -25,7 +25,7 @@ const puppeteer = require("puppeteer");
     id: "kamino-usdc-main",
     timestamp: timestamp.toISOString(),
     protocol: "kamino",
-    name: "USDC (Main)",
+    name: "USDC (SOL/BTC)",
     rate: parseFloat(rate),
     tvl: parseFloat(amount.replaceAll(",", "")) * { "": 1, K: 1e3, M: 1e6, B: 1e9 }[suffix],
   };
