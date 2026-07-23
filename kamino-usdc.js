@@ -2,7 +2,7 @@ const fs = require("node:fs");
 const puppeteer = require("puppeteer");
 
 (async () => {
-  const timestamp = new Date();
+  const timestamp = new Date(process.env.SCRAPE_TIMESTAMP ?? Date.now());
   const browser = await puppeteer.launch({ args: ["--no-sandbox"] });
   const page = await browser.newPage();
   await page.setViewport({ width: 1920, height: 1080 });

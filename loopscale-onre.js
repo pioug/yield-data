@@ -87,7 +87,7 @@ function getLendingRate(vault, tokens, prices, collateralYields, timestampSecond
 }
 
 (async () => {
-  const timestamp = new Date();
+  const timestamp = new Date(process.env.SCRAPE_TIMESTAMP ?? Date.now());
   const timestampSeconds = timestamp.getTime() / 1000;
   const lendingRequest = {
     includeStrategySummaries: true,

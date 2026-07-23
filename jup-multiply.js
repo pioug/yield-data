@@ -57,7 +57,7 @@ async function getEthenaMultiply(page) {
 }
 
 (async () => {
-  const timestamp = new Date();
+  const timestamp = new Date(process.env.SCRAPE_TIMESTAMP ?? Date.now());
   const browser = await puppeteer.launch({ args: ["--no-sandbox"] });
 
   try {
