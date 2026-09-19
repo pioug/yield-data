@@ -24,20 +24,6 @@ function parsePercentage(value) {
   return parseFloat(match[0].replaceAll(",", "").replace("%", ""));
 }
 
-async function getJuicedMultiply(page) {
-  await page.goto("https://jup.ag/lend/multiply", { waitUntil: "domcontentloaded" });
-
-  const element = await page.waitForSelector(`xpath/(//h3[contains(., 'JUICED')])`);
-  const text = await page.evaluate((el) => el.textContent.trim(), element);
-  const match = text.match(/Market Size\s*(\$[\d,.]+[KMB]?)\s*Max Net APY\s*([+-]?[\d,.]+%)/);
-
-  if (!match) {
-    throw new Error(`Unable to parse JUICED Multiply data from: ${text}`);
-  }
-
-  return { rate: parsePercentage(match[2]), tvl: parseAmount(match[1]) };
-}
-
 async function getEthenaMultiply(page) {
   await page.goto("https://jup.ag/lend/ethena/market", { waitUntil: "domcontentloaded" });
 
@@ -61,26 +47,11 @@ async function getEthenaMultiply(page) {
   const browser = await puppeteer.launch({ args: ["--no-sandbox"] });
 
   try {
-    const juicedPage = await browser.newPage();
     const ethenaPage = await browser.newPage();
-    await Promise.all([
-      juicedPage.setViewport({ width: 1920, height: 1080 }),
-      ethenaPage.setViewport({ width: 1920, height: 1080 }),
-    ]);
+    await ethenaPage.setViewport({ width: 1920, height: 1080 });
 
-    const [juiced, ethena] = await Promise.all([
-      getJuicedMultiply(juicedPage),
-      getEthenaMultiply(ethenaPage),
-    ]);
+    const ethena = await getEthenaMultiply(ethenaPage);
     const results = [
-      {
-        id: "jup-juiced-multiply",
-        timestamp: timestamp.toISOString(),
-        protocol: "jup",
-        name: "JUICED (Multiply)",
-        rate: juiced.rate,
-        tvl: juiced.tvl,
-      },
       {
         id: "jup-ethena-usde-multiply",
         timestamp: timestamp.toISOString(),
