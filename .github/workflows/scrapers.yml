@@ -70,6 +70,7 @@ jobs:
           git commit -m "Update yield data"
           git fetch origin gh-pages
           git checkout gh-pages
+          git rm -r --ignore-unmatch -- .
           git checkout main -- "${files[@]}"
           git add "${files[@]}" -f
           git commit --amend --reset-author -m "Update data"
