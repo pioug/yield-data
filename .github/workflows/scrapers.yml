@@ -6,7 +6,6 @@ on:
       - main
     paths:
       - ".github/workflows/scrapers.yml"
-      - "jup-multiply.js"
       - "jup-usdc.js"
       - "kamino-usdc.js"
       - "loopscale-onre.js"
@@ -41,7 +40,6 @@ jobs:
         run: |
           export SCRAPE_TIMESTAMP="$(date --utc +'%Y-%m-%dT%H:%M:%S.%3NZ')"
           scrapers=(
-            jup-multiply.js
             jup-usdc.js
             kamino-usdc.js
             loopscale-onre.js
@@ -62,7 +60,6 @@ jobs:
         shell: bash
         run: |
           files=(
-            jup-ethena-usde-multiply.json
             jup-usdc.json
             kamino-usdc-main.json
             loopscale-onre-growth.json
